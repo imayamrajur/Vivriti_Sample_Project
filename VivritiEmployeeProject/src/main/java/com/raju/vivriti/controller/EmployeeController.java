@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.raju.vivriti.average.AverageInteger;
 import com.raju.vivriti.module.Employee;
 import com.raju.vivriti.service.EmployeeService;
 
@@ -23,6 +24,9 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
+	
+	@Autowired
+	AverageInteger averageInteger;
 
 	@PostMapping("/register")
 	public String saveEmployee(@RequestBody Employee employee) {
@@ -53,6 +57,11 @@ public class EmployeeController {
 	@DeleteMapping("/delete/{id}")
 	public String deleteEmployee(@PathVariable("id") int id) {
 		return employeeService.deleteEmployee(id);		
+	}
+	
+	@GetMapping("/avg")
+	public int getAverageValue() {
+		return averageInteger.getAverageValue();		
 	}
 
 }
